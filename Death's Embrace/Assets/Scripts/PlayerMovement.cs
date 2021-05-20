@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    #region Variables
     [Header ("Movement Stuff")]
     public float movementSpeed = 8.0f;
     private float movementInputDirection;
+    float velocityXSmooth;
+    public float smoothTime;
     private Rigidbody2D rb;
     private bool isFacingRight = true;
     public float jumpForce = 10.0f;
     [Header("Better Jumping")]
-    public float gravidade;
+    public float gravidade = 4.5f;
     private float coyote_timer = 0;
     [SerializeField] private float coyote_seconds = 0.1f;
     private float JumpPressedRemember = 0;
@@ -30,7 +33,14 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     private const string IdleAnim = "anim_Idle";
     private const string RunAnim = "anim_Run";
+    private const string Jump0Up = "anim_Jump0Up";
+    private const string Jump0Down = "anim_Jump0Down";
+    private const string Jump1Up = "anim_Jump1Up";
+    private const string Jump1Down = "anim_Jump1Down";
 
+    #endregion
+
+    #region UnityMethods
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -52,13 +62,16 @@ public class PlayerMovement : MonoBehaviour
         coyote_timer += Time.deltaTime;
         rb.gravityScale = gravidade;
     }
-    
+
+    #endregion
+
+
+    #region BasicMovementMethods
     //Detetar Input de movimento -1 para esquerda, 1 para direita
     private void CheckInput()
     {
-        movementInputDirection = Input.GetAxisRaw("Horizontal");  
+        movementInputDirection = Input.GetAxisRaw("Horizontal");
     }
-
     private void CheckGround()
     {
         isGrounded = Physics2D.BoxCast(groundCheck.position, new Vector2(xValue, yValue), 0, Vector2.down, groundCheckRadius, whatIsGround);
@@ -108,15 +121,13 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         totalJumps++;
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        rb.velocity = new Vector2(rb.velocity.x, jumpForce);  
     }
-
     private void ApplyMovement()
     {
-        rb.velocity = new Vector2(movementSpeed * movementInputDirection, rb.velocity.y);
+        float targetVelocityX = movementSpeed * movementInputDirection;
+        rb.velocity = new Vector2(Mathf.SmoothDamp(rb.velocity.x, targetVelocityX, ref velocityXSmooth, smoothTime), rb.velocity.y) ;
     }
-
-
     private void CheckMovementDirection()
     {
         if (isFacingRight && movementInputDirection < 0)
@@ -129,15 +140,32 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    #endregion
+
+    #region Visuals
+
     void CheckAnimation()
     {
-        if (rb.velocity.x == 0 && isGrounded)
+        if (rb.velocity.x == 0 && isGrounded) //Is stopped
         {
             anim.Play(IdleAnim);
         }
-        else if(rb.velocity.x != 0 && isGrounded)
+        else if(rb.velocity.x != 0 && isGrounded) //Is walking
         {
             anim.Play(RunAnim);
+        }else if (rb.velocity.x == 0 && !isGrounded && rb.velocity.y > 0) //Is jumping with no x movement
+        {
+            anim.Play(Jump0Up);
+        }else if (rb.velocity.x == 0 && !isGrounded && rb.velocity.y < 0) //Is falling with no x movement
+        {
+            anim.Play(Jump0Down);
+        }else if (rb.velocity.x != 0 && !isGrounded && rb.velocity.y > 0) //Is jumping with x movement
+        {
+            anim.Play(Jump1Up);
+        }
+        else if (rb.velocity.x != 0 && !isGrounded && rb.velocity.y < 0) //is falling with x movement
+        {
+            anim.Play(Jump1Down);
         }
     }
 
@@ -159,4 +187,6 @@ public class PlayerMovement : MonoBehaviour
         }
         Gizmos.DrawCube(groundCheck.position, new Vector2(xValue, yValue));
     }
+
+    #endregion
 }
