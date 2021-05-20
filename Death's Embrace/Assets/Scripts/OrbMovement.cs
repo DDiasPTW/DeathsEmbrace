@@ -69,7 +69,6 @@ public class OrbMovement : MonoBehaviour
             isLaunched = true;
             clickPos = mousePos2D;
         }
-
         //Recalls the orb
         if (Input.GetMouseButtonDown(1) && isLaunched)
         {

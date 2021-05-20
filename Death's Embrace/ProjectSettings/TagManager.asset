@@ -6,6 +6,7 @@ TagManager:
   tags:
   - OrbTarget
   - TB
+  - Orb
   layers:
   - Default
   - TransparentFX
