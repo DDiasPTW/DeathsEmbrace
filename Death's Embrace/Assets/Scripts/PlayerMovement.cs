@@ -122,11 +122,12 @@ public class PlayerMovement : MonoBehaviour
     {
         totalJumps++;
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);  
+        //rb.velocity += Vector2.up * jumpForce;  
     }
     private void ApplyMovement()
     {
         float targetVelocityX = movementSpeed * movementInputDirection;
-        rb.velocity = new Vector2(Mathf.SmoothDamp(rb.velocity.x, targetVelocityX, ref velocityXSmooth, smoothTime), rb.velocity.y) ;
+        rb.velocity = new Vector2(Mathf.SmoothDamp(rb.velocity.x, targetVelocityX, ref velocityXSmooth, smoothTime), rb.velocity.y);
     }
     private void CheckMovementDirection()
     {
