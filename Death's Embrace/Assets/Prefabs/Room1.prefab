@@ -55,7 +55,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 5.85
+    OrthographicSize: 6
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -231,11 +231,11 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -1.3303385, y: 11.5}
-      - {x: -14, y: 11.5}
-      - {x: -14, y: -1}
-      - {x: 7, y: -1}
-      - {x: 7, y: 11.5}
+    - - {x: -1.3303385, y: 11}
+      - {x: -14.2, y: 11}
+      - {x: -14.2, y: -1}
+      - {x: 7.2, y: -1}
+      - {x: 7.2, y: 11}
 --- !u!114 &4925857440165637458
 MonoBehaviour:
   m_ObjectHideFlags: 0
