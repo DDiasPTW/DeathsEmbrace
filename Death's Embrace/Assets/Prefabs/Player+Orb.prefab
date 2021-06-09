@@ -383,7 +383,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 5
   smoothTime: 0
-  jumpForce: 14
+  jumpForce: 15
   gravidade: 4.5
   coyote_seconds: 0.1
   JumpPressedRememberTimer: 0.1

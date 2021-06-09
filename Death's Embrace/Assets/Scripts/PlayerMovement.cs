@@ -5,15 +5,16 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     #region Variables
+    private Rigidbody2D rb;
+    public bool canWalkRight = true, canWalkLeft = true, canJump = true, canOrb = true;
     [Header ("Movement Stuff")]
     public float movementSpeed = 8.0f;
     private float movementInputDirection;
     float velocityXSmooth;
     public float smoothTime;
-    private Rigidbody2D rb;
     private bool isFacingRight = true;
+    [Header("Jumping")]
     public float jumpForce = 10.0f;
-    [Header("Better Jumping")]
     public float gravidade = 4.5f;
     private float coyote_timer = 0;
     [SerializeField] private float coyote_seconds = 0.1f;
@@ -84,50 +85,66 @@ public class PlayerMovement : MonoBehaviour
             totalJumps = 0;
         }
 
-        //Coyote Timer
-        if (isGrounded)
+        if (canJump)
         {
-            coyote_timer = 0;
-        }else if (!isGrounded && coyote_timer > coyote_seconds && totalJumps == 0)
-        {
-            totalJumps = 1;
-        }
-
-        //JumpBuffer
-        JumpPressedRemember -= Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            JumpPressedRemember = JumpPressedRememberTimer;
-        }
-        //The Jumping
-        if (((JumpPressedRemember > 0) && isGrounded && totalJumps < howManyJumps) /*Jump Buffer*/)
-        {
-            JumpPressedRemember = 0;
-            Jump();
-        }else if ((Input.GetKeyDown(KeyCode.Space) && coyote_timer <= coyote_seconds && totalJumps < howManyJumps) /*CoyoteTimer*/)
-        {
-            JumpPressedRemember = 0;
-            Jump();
-        }
-        else if (Input.GetKeyDown(KeyCode.Space) && !isGrounded)
-        {
-            if (totalJumps < howManyJumps)
+            //Coyote Timer
+            if (isGrounded)
             {
+                coyote_timer = 0;
+            }
+            else if (!isGrounded && coyote_timer > coyote_seconds && totalJumps == 0)
+            {
+                totalJumps = 1;
+            }
+
+            //JumpBuffer
+            JumpPressedRemember -= Time.deltaTime;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                JumpPressedRemember = JumpPressedRememberTimer;
+            }
+            //The Jumping
+            if (((JumpPressedRemember > 0) && isGrounded && totalJumps < howManyJumps) /*Jump Buffer*/)
+            {
+                JumpPressedRemember = 0;
                 Jump();
             }
-            else return;
+            else if ((Input.GetKeyDown(KeyCode.Space) && coyote_timer <= coyote_seconds && totalJumps < howManyJumps) /*CoyoteTimer*/)
+            {
+                JumpPressedRemember = 0;
+                Jump();
+            }
+            else if (Input.GetKeyDown(KeyCode.Space) && !isGrounded)
+            {
+                if (totalJumps < howManyJumps)
+                {
+                    Jump();
+                }
+                else return;
+            }
         }
+        
     }
     private void Jump()
     {
         totalJumps++;
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);  
-        //rb.velocity += Vector2.up * jumpForce;  
+        rb.velocity = new Vector2(rb.velocity.x, jumpForce);   
     }
     private void ApplyMovement()
     {
-        float targetVelocityX = movementSpeed * movementInputDirection;
-        rb.velocity = new Vector2(Mathf.SmoothDamp(rb.velocity.x, targetVelocityX, ref velocityXSmooth, smoothTime), rb.velocity.y);
+        if ((movementInputDirection == 1 && canWalkRight) || (movementInputDirection == -1 && canWalkLeft))
+        {
+            float targetVelocityX = movementSpeed * movementInputDirection;
+            rb.velocity = new Vector2(Mathf.SmoothDamp(rb.velocity.x, targetVelocityX, ref velocityXSmooth, smoothTime), rb.velocity.y);
+        }else if ((movementInputDirection == 1 && !canWalkRight) || (movementInputDirection == -1 && !canWalkLeft))
+        {
+            rb.velocity = new Vector2(0,rb.velocity.y);
+        }
+        else 
+        {
+            float targetVelocityX = movementSpeed * movementInputDirection;
+            rb.velocity = new Vector2(Mathf.SmoothDamp(rb.velocity.x, targetVelocityX, ref velocityXSmooth, smoothTime), rb.velocity.y);
+        }
     }
     private void CheckMovementDirection()
     {
@@ -172,8 +189,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Flip()
     {
-        isFacingRight = !isFacingRight;
-        transform.Rotate(0,180,0);
+        if (Time.timeScale != 0)
+        {
+            isFacingRight = !isFacingRight;
+            transform.Rotate(0, 180, 0);
+        }
     }
 
     private void OnDrawGizmos()

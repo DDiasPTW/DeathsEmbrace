@@ -17,25 +17,29 @@ public class TriggerBoxController : MonoBehaviour
             if (other.GetComponent<OrbMovement>().isCaught)
             {
                 collToActivate.SetActive(true);
-
             }
         }
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.GetComponent<OrbMovement>().isCaught)
+        if (other.CompareTag("Orb"))
         {
-            collToActivate.SetActive(true);
+            if (other.GetComponent<OrbMovement>().isCaught)
+            {
+                collToActivate.SetActive(true);
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (!other.GetComponent<OrbMovement>().isCaught)
+        if (other.CompareTag("Orb"))
         {
-            collToActivate.SetActive(false);
-
-        }
+            if (!other.GetComponent<OrbMovement>().isCaught)
+            {
+                collToActivate.SetActive(false);
+            }
+        } 
     }
 }

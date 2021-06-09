@@ -7,6 +7,9 @@ TagManager:
   - OrbTarget
   - TB
   - Orb
+  - Sacrifice
+  - Sacrifice_Orb
+  - Spawn
   layers:
   - Default
   - TransparentFX

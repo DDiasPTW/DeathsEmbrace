@@ -9,6 +9,7 @@ public class OrbMovement : MonoBehaviour
     private SpriteRenderer sr; //Is disabled when it gets "caught"
     private Rigidbody2D rb; 
     private Transform playerTarget; //Has to have a tag in order to get set automatically in Awake()
+    private PlayerMovement playerM;
     Vector2 caughtTarget; //Gets set when orb hits a trigger box
     Vector2 mouseTarget; //Gets set when player leftClicks with mouse
     Vector2 position; //Gets set every frame, uses the playerTarget
@@ -27,6 +28,7 @@ public class OrbMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         cc = GetComponent<CircleCollider2D>();
         sr = GetComponent<SpriteRenderer>();
+        playerM = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         cc.isTrigger = true;
         position = new Vector2(transform.position.x,transform.position.y);
         playerTarget = GameObject.FindGameObjectWithTag("OrbTarget").transform;
@@ -59,25 +61,28 @@ public class OrbMovement : MonoBehaviour
         //Sets orb target position to the playerTarget GO
         position = Vector2.Lerp(transform.position, playerTarget.position, speed);
 
-        //Detect mouse click
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePos2D = new Vector2(mousePos.x, mousePos.y);
-        mouseTarget = Vector2.Lerp(transform.position, clickPos, launchSpeed);
-        //Sends the orb to mousePos
-        if (Input.GetMouseButtonDown(0) && !isLaunched)
+        if (playerM.canOrb && Time.timeScale != 0)
         {
-            isLaunched = true;
-            clickPos = mousePos2D;
-        }
-        //Recalls the orb
-        if (Input.GetMouseButtonDown(1) && isLaunched)
-        {
-            isLaunched = false;
-            if (isCaught)
+            //Detect mouse click
+            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePos2D = new Vector2(mousePos.x, mousePos.y);
+            mouseTarget = Vector2.Lerp(transform.position, clickPos, launchSpeed);
+            //Sends the orb to mousePos
+            if (Input.GetMouseButtonDown(0) && !isLaunched)
             {
-                isCaught = false;
+                isLaunched = true;
+                clickPos = mousePos2D;
             }
-        }
+            //Recalls the orb
+            if (Input.GetMouseButtonDown(1) && isLaunched)
+            {
+                isLaunched = false;
+                if (isCaught)
+                {
+                    isCaught = false;
+                }
+            }
+        }       
     }
 
     void CheckStatus()
@@ -99,7 +104,7 @@ public class OrbMovement : MonoBehaviour
 
     void SetVisuals()
     {
-        if (isCaught)
+        if (isCaught || !playerM.canOrb)
         {
             sr.enabled = false;
         }
