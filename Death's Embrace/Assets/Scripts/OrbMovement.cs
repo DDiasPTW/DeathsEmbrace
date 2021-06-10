@@ -29,7 +29,7 @@ public class OrbMovement : MonoBehaviour
         cc = GetComponent<CircleCollider2D>();
         sr = GetComponent<SpriteRenderer>();
         playerM = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
-        cc.isTrigger = true;
+        cc.isTrigger = true; //in case i forget to change in inspector
         position = new Vector2(transform.position.x,transform.position.y);
         playerTarget = GameObject.FindGameObjectWithTag("OrbTarget").transform;
     }
@@ -48,7 +48,7 @@ public class OrbMovement : MonoBehaviour
         if (other.CompareTag("TB") && isLaunched)
         {
             isCaught = true;
-            caughtTarget = Vector2.Lerp(transform.position, other.transform.position, caughtSpeed);
+            caughtTarget = other.transform.position;
         }
     }
 
@@ -94,11 +94,11 @@ public class OrbMovement : MonoBehaviour
         }
         if (isLaunched)
         {
-            rb.MovePosition(mouseTarget);
+            gameObject.transform.position = clickPos;
         }
         if (isCaught)
         {
-            rb.MovePosition(caughtTarget);
+            gameObject.transform.position = caughtTarget;
         }
     }
 

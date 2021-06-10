@@ -906,26 +906,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1338301469 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4925857440165637469, guid: 25b00a25e10e92c4a947704978706180, type: 3}
-  m_PrefabInstance: {fileID: 318386563}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1338301472
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1338301469}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bdf734be344ab2419a861adb25c6a87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Sacrifice_Orbs: []
-  howManyOrbs: 0
-  orbsNeeded: 0
 --- !u!1001 &1397602431
 PrefabInstance:
   m_ObjectHideFlags: 0

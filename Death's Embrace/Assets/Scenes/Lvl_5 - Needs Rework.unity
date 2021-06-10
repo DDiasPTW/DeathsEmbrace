@@ -1559,6 +1559,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TriggerBox
       objectReference: {fileID: 0}
+    - target: {fileID: 8252619001998157897, guid: 0f8b6890c7c46554aa83253d66d0d05f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8252619001998157901, guid: 0f8b6890c7c46554aa83253d66d0d05f, type: 3}
       propertyPath: m_RootOrder
       value: 8

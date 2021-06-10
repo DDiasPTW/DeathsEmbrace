@@ -13,6 +13,8 @@ TagManager:
   - Restore
   - Restore_Orb
   - Jump
+  - Next
+  - Room
   layers:
   - Default
   - TransparentFX

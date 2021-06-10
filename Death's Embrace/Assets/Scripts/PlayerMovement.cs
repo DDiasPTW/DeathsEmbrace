@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
     #region Variables
     private Rigidbody2D rb;
     public bool canWalkRight = true, canWalkLeft = true, canJump = true, canOrb = true;
+    public bool canNextLevel = false;
+    private RoomManager rM;
     [Header ("Movement Stuff")]
     public float movementSpeed = 8.0f;
     private float movementInputDirection;
@@ -46,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
+        rM = GameObject.FindGameObjectWithTag("Room").GetComponent<RoomManager>();
     }
 
     private void FixedUpdate()
@@ -60,16 +64,35 @@ public class PlayerMovement : MonoBehaviour
         CheckInput();
         CheckMovementDirection();
         CheckAnimation();
+        CheckNextLevel();
         coyote_timer += Time.deltaTime;
         rb.gravityScale = gravidade;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        //Jump pads
         if (other.CompareTag("Jump"))
         {
             float padForce = other.GetComponent<Jumppad>().Force;
             rb.velocity = new Vector2(rb.velocity.x, padForce);
+        }
+
+        //Next level
+        if (other.CompareTag("Next"))
+        {
+            if (rM.howManyOrbs == rM.orbsNeeded)
+            {
+                canNextLevel = true;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Next"))
+        {
+            canNextLevel = false;
         }
     }
 
@@ -167,6 +190,16 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    #endregion
+
+    #region Other
+    void CheckNextLevel()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && canNextLevel)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+    }
     #endregion
 
     #region Visuals
