@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 4925857440165637459}
   - component: {fileID: 4925857440165637468}
   - component: {fileID: 4925857440165637458}
+  - component: {fileID: 4154293593907735524}
   m_Layer: 0
   m_Name: Room1
   m_TagString: Untagged
@@ -249,3 +250,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   virtualCam: {fileID: 4925857439466885197}
+--- !u!114 &4154293593907735524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4925857440165637469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bdf734be344ab2419a861adb25c6a87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sacrifice_Orbs: []
+  howManyOrbs: 0
+  orbsNeeded: 0

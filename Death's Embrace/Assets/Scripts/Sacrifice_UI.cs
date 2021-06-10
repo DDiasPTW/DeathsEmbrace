@@ -14,7 +14,28 @@ public class Sacrifice_UI : MonoBehaviour
 
     private void Update()
     {
+        if (!pM.canWalkLeft)
+        {
+            SacLeft.interactable = false;
+        }else SacLeft.interactable = true;
 
+        if (!pM.canWalkRight)
+        {
+            SacRight.interactable = false;
+        }
+        else SacRight.interactable = true;
+
+        if (!pM.canJump)
+        {
+            SacJump.interactable = false;
+        }
+        else SacJump.interactable = true;
+
+        if (!pM.canOrb)
+        {
+            SacOrb.interactable = false;
+        }
+        else SacOrb.interactable = true;
     }
 
     public void SacrificeLeft()

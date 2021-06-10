@@ -64,6 +64,15 @@ public class PlayerMovement : MonoBehaviour
         rb.gravityScale = gravidade;
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Jump"))
+        {
+            float padForce = other.GetComponent<Jumppad>().Force;
+            rb.velocity = new Vector2(rb.velocity.x, padForce);
+        }
+    }
+
     #endregion
 
 

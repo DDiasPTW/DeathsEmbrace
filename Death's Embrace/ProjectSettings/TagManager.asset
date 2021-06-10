@@ -10,6 +10,9 @@ TagManager:
   - Sacrifice
   - Sacrifice_Orb
   - Spawn
+  - Restore
+  - Restore_Orb
+  - Jump
   layers:
   - Default
   - TransparentFX
