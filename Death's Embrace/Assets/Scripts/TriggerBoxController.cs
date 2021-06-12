@@ -29,6 +29,10 @@ public class TriggerBoxController : MonoBehaviour
             {
                 collToActivate.SetActive(true);
             }
+            else
+            {
+                collToActivate.SetActive(false);
+            }
         }
     }
 

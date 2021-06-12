@@ -15,6 +15,7 @@ TagManager:
   - Jump
   - Next
   - Room
+  - Recept
   layers:
   - Default
   - TransparentFX

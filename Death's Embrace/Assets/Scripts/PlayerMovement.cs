@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     public bool canWalkRight = true, canWalkLeft = true, canJump = true, canOrb = true;
     public bool canNextLevel = false;
+    public GameObject popUp;
     private RoomManager rM;
     [Header ("Movement Stuff")]
     public float movementSpeed = 8.0f;
@@ -41,6 +42,10 @@ public class PlayerMovement : MonoBehaviour
     private const string Jump0Down = "anim_Jump0Down";
     private const string Jump1Up = "anim_Jump1Up";
     private const string Jump1Down = "anim_Jump1Down";
+    [Header("PopUp_Anim")]
+    public Animator pop_Anim;
+    private const string In = "Pop_In";
+    private const string Out = "Pop_Out";
 
     #endregion
 
@@ -49,7 +54,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
-        rM = GameObject.FindGameObjectWithTag("Room").GetComponent<RoomManager>();
+        rM = GameObject.FindGameObjectWithTag("Room").GetComponent<RoomManager>(); 
+        popUp.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -67,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
         CheckNextLevel();
         coyote_timer += Time.deltaTime;
         rb.gravityScale = gravidade;
+        popUp.transform.rotation = Quaternion.identity;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -84,7 +91,17 @@ public class PlayerMovement : MonoBehaviour
             if (rM.howManyOrbs == rM.orbsNeeded)
             {
                 canNextLevel = true;
+                popUp.transform.rotation = Quaternion.identity;
+                popUp.SetActive(true);
+                pop_Anim.Play(In);
             }
+        }
+        //Rececao
+        if (other.CompareTag("Recept"))
+        {
+            popUp.transform.rotation = Quaternion.identity;
+            popUp.SetActive(true);
+            pop_Anim.Play(In);
         }
     }
 
@@ -93,6 +110,13 @@ public class PlayerMovement : MonoBehaviour
         if (other.CompareTag("Next"))
         {
             canNextLevel = false;
+            pop_Anim.Play(Out);
+            //popUp.SetActive(false);
+        }
+        if (other.CompareTag("Recept"))
+        {
+            pop_Anim.Play(Out);
+            //popUp.SetActive(false);
         }
     }
 

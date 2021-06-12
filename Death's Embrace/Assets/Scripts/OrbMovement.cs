@@ -52,6 +52,15 @@ public class OrbMovement : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("TB") && isLaunched)
+        {
+            isCaught = true;
+            caughtTarget = other.transform.position;
+        }
+    }
+
     #endregion
 
 

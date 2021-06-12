@@ -8,8 +8,14 @@ public class RoomManager : MonoBehaviour
     public List<GameObject> Sacrifice_Orbs;
     public int howManyOrbs = 0;
     public int orbsNeeded;
+    [Header("Manual")]
+    public int currentLevel;
     private void Awake()
     {
+        if (PlayerPrefs.GetInt("LevelUnlocked") < currentLevel)
+        {
+            PlayerPrefs.SetInt("LevelUnlocked",currentLevel);
+        }
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
             var child = gameObject.transform.GetChild(i);
