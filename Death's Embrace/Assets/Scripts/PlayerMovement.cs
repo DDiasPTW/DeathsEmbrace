@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [Header ("Movement Stuff")]
     public float movementSpeed = 8.0f;
     private float movementInputDirection;
+    private float movementInputDirectionVert;
     float velocityXSmooth;
     public float smoothTime;
     private bool isFacingRight = true;
@@ -128,6 +129,7 @@ public class PlayerMovement : MonoBehaviour
     private void CheckInput()
     {
         movementInputDirection = Input.GetAxisRaw("Horizontal");
+        movementInputDirectionVert = Input.GetAxisRaw("Vertical");
     }
     private void CheckGround()
     {
@@ -148,14 +150,14 @@ public class PlayerMovement : MonoBehaviour
             {
                 coyote_timer = 0;
             }
-            else if (!isGrounded && coyote_timer > coyote_seconds && totalJumps == 0)
+            else if (!isGrounded && (coyote_timer > coyote_seconds) && totalJumps == 0)
             {
                 totalJumps = 1;
             }
 
             //JumpBuffer
             JumpPressedRemember -= Time.deltaTime;
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) || movementInputDirectionVert == 1)
             {
                 JumpPressedRemember = JumpPressedRememberTimer;
             }
@@ -165,26 +167,25 @@ public class PlayerMovement : MonoBehaviour
                 JumpPressedRemember = 0;
                 Jump();
             }
-            else if ((Input.GetKeyDown(KeyCode.Space) && coyote_timer <= coyote_seconds && totalJumps < howManyJumps) /*CoyoteTimer*/)
+            else if (((Input.GetKeyDown(KeyCode.Space) || movementInputDirectionVert == 1) && coyote_timer <= coyote_seconds && totalJumps < howManyJumps) /*CoyoteTimer*/)
             {
                 JumpPressedRemember = 0;
                 Jump();
             }
-            else if (Input.GetKeyDown(KeyCode.Space) && !isGrounded)
+            else if ((Input.GetKeyDown(KeyCode.Space) || movementInputDirectionVert == 1) && !isGrounded)
             {
                 if (totalJumps < howManyJumps)
                 {
                     Jump();
                 }
-                else return;
             }
         }
         
     }
     private void Jump()
     {
-        totalJumps++;
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);   
+        totalJumps++;
     }
     private void ApplyMovement()
     {

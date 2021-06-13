@@ -597,6 +597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 472b587684a714649ab3d88b7553f1c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  whatLevelUnlocked: 0
 --- !u!4 &989730053
 Transform:
   m_ObjectHideFlags: 0
@@ -1665,6 +1666,10 @@ PrefabInstance:
     - target: {fileID: 7424556963165157503, guid: 951bffba95b73904faa18c6a5b8183c6, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7424556963454274421, guid: 951bffba95b73904faa18c6a5b8183c6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 951bffba95b73904faa18c6a5b8183c6, type: 3}
