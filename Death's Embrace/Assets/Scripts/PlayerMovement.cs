@@ -112,12 +112,10 @@ public class PlayerMovement : MonoBehaviour
         {
             canNextLevel = false;
             pop_Anim.Play(Out);
-            //popUp.SetActive(false);
         }
         if (other.CompareTag("Recept"))
         {
             pop_Anim.Play(Out);
-            //popUp.SetActive(false);
         }
     }
 
@@ -125,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     #region BasicMovementMethods
-    //Detetar Input de movimento -1 para esquerda, 1 para direita
+    //Detetar Input de movimento -1 para esquerda, 1 para direita // -1 baixo e 1 cima
     private void CheckInput()
     {
         movementInputDirection = Input.GetAxisRaw("Horizontal");

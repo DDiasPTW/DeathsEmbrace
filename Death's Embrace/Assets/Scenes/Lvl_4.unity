@@ -482,7 +482,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2375897953939677518, guid: 2787b553f96d10b47bfa57de2126f66d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.47
+      value: -6.67
       objectReference: {fileID: 0}
     - target: {fileID: 2375897953939677518, guid: 2787b553f96d10b47bfa57de2126f66d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2194,8 +2194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4567104843656ef4fa2254b5b2b28b0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tut_UI: {fileID: 0}
-  Tut_Text: {fileID: 0}
+  Tut_UI: {fileID: 7424556963152029474}
+  Tut_Text: {fileID: 7424556963152029473}
   textTut: THIS NEW TYPE OF ORB WILL RESET YOUR JUMP, IN CASE YOU SACRIFICED IT
 --- !u!61 &1666320974820980855
 BoxCollider2D:
@@ -2210,7 +2210,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -2.0540793, y: -3.6875648}
+  m_Offset: {x: -2.281659, y: -4.1806545}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2221,7 +2221,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.2991414, y: 4.0480404}
+  m_Size: {x: 2.8439822, y: 3.061861}
   m_EdgeRadius: 0
 --- !u!1 &1666320976222328384
 GameObject:
@@ -2322,6 +2322,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1187813819663381869, guid: 951bffba95b73904faa18c6a5b8183c6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -47
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853034751783737820, guid: 951bffba95b73904faa18c6a5b8183c6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7424556963017563156, guid: 951bffba95b73904faa18c6a5b8183c6, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -2420,3 +2428,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 951bffba95b73904faa18c6a5b8183c6, type: 3}
+--- !u!114 &7424556963152029473 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9197698826665137747, guid: 951bffba95b73904faa18c6a5b8183c6, type: 3}
+  m_PrefabInstance: {fileID: 7424556963152029472}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &7424556963152029474 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3853034751783737820, guid: 951bffba95b73904faa18c6a5b8183c6, type: 3}
+  m_PrefabInstance: {fileID: 7424556963152029472}
+  m_PrefabAsset: {fileID: 0}

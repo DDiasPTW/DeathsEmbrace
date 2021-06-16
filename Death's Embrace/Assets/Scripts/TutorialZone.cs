@@ -22,6 +22,15 @@ public class TutorialZone : MonoBehaviour
 
     }
 
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Tut_Text.text = textTut;
+            Tut_UI.SetActive(true);
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
