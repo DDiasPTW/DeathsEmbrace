@@ -8,12 +8,7 @@ public class GameManager : MonoBehaviour
     public int whatLevelUnlocked;
 
     private void Start()
-    {
-        if (PlayerPrefs.GetInt("LevelUnlocked") == 0)
-        {
-            PlayerPrefs.SetInt("LevelUnlocked", 1);
-        }
-        
+    {       
         whatLevelUnlocked = PlayerPrefs.GetInt("LevelUnlocked");
     }
     void Update()

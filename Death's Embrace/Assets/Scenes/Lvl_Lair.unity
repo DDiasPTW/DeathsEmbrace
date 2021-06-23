@@ -464,7 +464,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -291610090371874735, guid: 1f8c3bed43b16664da16e57a1991c681, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.70980394, g: 0.70980394, b: 0.70980394, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -482,8 +482,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 584760453}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -24.751, y: -5.237, z: 0}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 1}
+  m_LocalPosition: {x: -24.751, y: -5.192, z: 0}
+  m_LocalScale: {x: 0.96, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
@@ -536,16 +536,13 @@ MonoBehaviour:
   - "Death is on top of the tower, it\u2019s not so simple to get there. \nOnce you
     get through that elevator there\u2019s no way back. \nAre you sure you want to
     go?"
-  - '*Sigh* Alright. That blue orb you see around you is your soul, everything here
-    is soul powered so be sure to learn how to use it.
+  - '*Sigh* Alright. That blue orb you''ll see around you is your soul, everything
+    here is soul powered so be sure to learn how to use it.
 
 
     Go on now... '
-  - 'Oh.. by the way, Death hates visitors so it can be a little tricky to get to
-    her.
-
-
-    Just beware.'
+  - Oh.. by the way, Death hates visitors so it can be a little tricky to get to
+    it.
   continueButtonTexts:
   - Death.
   - Yep.
@@ -700,15 +697,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2645915503163689286, guid: 951bffba95b73904faa18c6a5b8183c6, type: 3}
       propertyPath: m_Color.b
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2645915503163689286, guid: 951bffba95b73904faa18c6a5b8183c6, type: 3}
       propertyPath: m_Color.g
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2645915503163689286, guid: 951bffba95b73904faa18c6a5b8183c6, type: 3}
       propertyPath: m_Color.r
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7424556963017563156, guid: 951bffba95b73904faa18c6a5b8183c6, type: 3}
       propertyPath: m_Name
@@ -812,15 +809,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9197698826665137747, guid: 951bffba95b73904faa18c6a5b8183c6, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9197698826665137747, guid: 951bffba95b73904faa18c6a5b8183c6, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9197698826665137747, guid: 951bffba95b73904faa18c6a5b8183c6, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 951bffba95b73904faa18c6a5b8183c6, type: 3}
@@ -1237,8 +1234,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: eb0302cef43f0484eabb41fef077afb1, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: ac9dd3a24bdf3de4e8d1eb46bfb3c1ed, type: 3}
+  m_Color: {r: 0.70980394, g: 0.70980394, b: 0.70980394, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2154,6 +2151,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3509728328055904636, guid: 317809635315dbe469bbebe551104c8f, type: 3}
+      propertyPath: canOrb
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3509728328937192200, guid: 317809635315dbe469bbebe551104c8f, type: 3}
       propertyPath: m_RootOrder
       value: 4

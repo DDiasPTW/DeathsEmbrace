@@ -24,6 +24,21 @@ public class LevelSelectMenu : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        for (int i = 0; i < LevelButtons.Length; i++)
+        {
+            if (PlayerPrefs.GetInt("LevelUnlocked") < i)
+            {
+                LevelButtons[i].interactable = false;
+            }
+            else
+            {
+                LevelButtons[i].interactable = true;
+            }
+        }
+    }
+
     public void LoadLevel1()
     {
         SceneManager.LoadScene("Lvl_1");
