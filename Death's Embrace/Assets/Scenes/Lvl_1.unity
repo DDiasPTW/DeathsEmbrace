@@ -224,9 +224,29 @@ PrefabInstance:
       propertyPath: currentLevel
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4925857439466885186, guid: 25b00a25e10e92c4a947704978706180, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925857439466885196, guid: 25b00a25e10e92c4a947704978706180, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925857439466885196, guid: 25b00a25e10e92c4a947704978706180, type: 3}
+      propertyPath: m_Lens.m_SensorSize.x
+      value: 1.777027
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925857439466885197, guid: 25b00a25e10e92c4a947704978706180, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4925857439466885197, guid: 25b00a25e10e92c4a947704978706180, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925857439803323436, guid: 25b00a25e10e92c4a947704978706180, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4925857440165637459, guid: 25b00a25e10e92c4a947704978706180, type: 3}
       propertyPath: m_RootOrder
@@ -347,7 +367,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.9320278, y: -4.879263}
+  m_Offset: {x: 2.9320278, y: -4.2505913}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -358,7 +378,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.1019173, y: 1.6646442}
+  m_Size: {x: 6.1019173, y: 2.9219878}
   m_EdgeRadius: 0
 --- !u!1 &519420028
 GameObject:
@@ -602,7 +622,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.5053358, y: -3.7291446}
+  m_Offset: {x: 2.5053358, y: -4.252894}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -613,7 +633,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.620471, y: 3.9648807}
+  m_Size: {x: 5.620471, y: 2.9173825}
   m_EdgeRadius: 0
 --- !u!1 &862461647
 GameObject:
@@ -1049,7 +1069,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.6632159, y: -3.698475}
+  m_Offset: {x: -0.6632159, y: -4.2518806}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1060,7 +1080,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.083119, y: 4.0262203}
+  m_Size: {x: 5.083119, y: 2.9194086}
   m_EdgeRadius: 0
 --- !u!1001 &1491891365
 PrefabInstance:
@@ -1186,7 +1206,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 8da3bf24065aad94a91c68f93934edd9, type: 3}
-  m_Color: {r: 0.70980394, g: 0.70980394, b: 0.70980394, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1393,8 +1413,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1895929155}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.6972, y: -3.516, z: 0}
-  m_LocalScale: {x: 21.821781, y: 0.42852733, z: 1}
+  m_LocalPosition: {x: 0.6972, y: -3.5103, z: 0}
+  m_LocalScale: {x: 21.821781, y: 0.439898, z: 1}
   m_Children: []
   m_Father: {fileID: 1911562762}
   m_RootOrder: 0
@@ -1839,13 +1859,13 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3853034751783737820, guid: 951bffba95b73904faa18c6a5b8183c6, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7424556963017563156, guid: 951bffba95b73904faa18c6a5b8183c6, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7424556963017563156, guid: 951bffba95b73904faa18c6a5b8183c6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7424556963017563159, guid: 951bffba95b73904faa18c6a5b8183c6, type: 3}
       propertyPath: m_Camera

@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public bool canWalkRight = true, canWalkLeft = true, canJump = true, canOrb = true;
     public bool canNextLevel = false;
     public GameObject popUp;
+    public GameObject sceneTransition;
     private RoomManager rM;
     [Header ("Movement Stuff")]
     public float movementSpeed = 8.0f;
@@ -47,14 +48,22 @@ public class PlayerMovement : MonoBehaviour
     public Animator pop_Anim;
     private const string In = "Pop_In";
     private const string Out = "Pop_Out";
+    [Header("Audio")]
+    private AudioSource aS;
+    [Range(0,1)]
+    public float jumpSFXVolume;
+    public AudioClip jumpSFX;
+    public AudioClip elevatorSFX;
 
     #endregion
 
     #region UnityMethods
     private void Awake()
     {
+        aS = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
+        sceneTransition = GameObject.FindGameObjectWithTag("Scene");
         rM = GameObject.FindGameObjectWithTag("Room").GetComponent<RoomManager>(); 
         popUp.SetActive(false);
     }
@@ -182,6 +191,8 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Jump()
     {
+        aS.volume = jumpSFXVolume;
+        aS.PlayOneShot(jumpSFX);
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);   
         totalJumps++;
     }
@@ -220,8 +231,17 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && canNextLevel)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            sceneTransition.GetComponent<Animator>().Play("anim_SceneOut");
+            sceneTransition.GetComponent<AudioSource>().PlayOneShot(elevatorSFX);
+            StartCoroutine(LoadLevel());
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
+    }
+
+    IEnumerator LoadLevel()
+    {
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     #endregion
 
@@ -238,7 +258,7 @@ public class PlayerMovement : MonoBehaviour
             anim.Play(RunAnim);
         }else if (rb.velocity.x == 0 && !isGrounded && rb.velocity.y > 0) //Is jumping with no x movement
         {
-            anim.Play(Jump0Up);
+            anim.Play(Jump0Up);   
         }else if (rb.velocity.x == 0 && !isGrounded && rb.velocity.y < 0) //Is falling with no x movement
         {
             anim.Play(Jump0Down);
