@@ -7,13 +7,21 @@ public class Sacrifice_UI : MonoBehaviour
 {
     private PlayerMovement pM;
     public Button SacLeft, SacRight, SacJump, SacOrb;
+    
+    private AudioSource aS;
+    
+    [Range(0,1)]
+    public float clickVolume;
+    public AudioClip UI_Click;
     private void Awake()
     {
         pM = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        aS = GetComponent<AudioSource>();
     }
 
     private void Update()
     {
+        aS.volume = clickVolume;
         if (!pM.canWalkLeft)
         {
             SacLeft.interactable = false;
@@ -43,7 +51,7 @@ public class Sacrifice_UI : MonoBehaviour
         pM.canWalkLeft = false;
         Time.timeScale = 1;
         SacLeft.interactable = false;
-
+        aS.PlayOneShot(UI_Click);
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
             var child = gameObject.transform.GetChild(i).gameObject;
@@ -56,6 +64,7 @@ public class Sacrifice_UI : MonoBehaviour
         pM.canWalkRight = false;
         Time.timeScale = 1;
         SacRight.interactable = false;
+        aS.PlayOneShot(UI_Click);
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
             var child = gameObject.transform.GetChild(i).gameObject;
@@ -69,6 +78,7 @@ public class Sacrifice_UI : MonoBehaviour
         pM.canJump = false;
         Time.timeScale = 1;
         SacJump.interactable = false;
+        aS.PlayOneShot(UI_Click);
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
             var child = gameObject.transform.GetChild(i).gameObject;
@@ -82,6 +92,7 @@ public class Sacrifice_UI : MonoBehaviour
         pM.canOrb = false;
         Time.timeScale = 1;
         SacOrb.interactable = false;
+        aS.PlayOneShot(UI_Click);
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
             var child = gameObject.transform.GetChild(i).gameObject;

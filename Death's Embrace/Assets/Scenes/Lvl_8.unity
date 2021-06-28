@@ -283,7 +283,7 @@ MonoBehaviour:
   m_FocusTracking: 0
   m_FocusTarget: {fileID: 0}
   m_FocusOffset: 0
-  m_Profile: {fileID: 11400000, guid: 8b0bf0d72bf4ad74991a73c7e2c8daf9, type: 2}
+  m_Profile: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2410,6 +2410,10 @@ PrefabInstance:
     - target: {fileID: 7424556963017563156, guid: 951bffba95b73904faa18c6a5b8183c6, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7424556963017563156, guid: 951bffba95b73904faa18c6a5b8183c6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7424556963017563159, guid: 951bffba95b73904faa18c6a5b8183c6, type: 3}
       propertyPath: m_Camera

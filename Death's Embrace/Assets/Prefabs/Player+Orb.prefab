@@ -514,8 +514,8 @@ MonoBehaviour:
   smoothTime: 0
   jumpForce: 15
   gravidade: 4.5
-  coyote_seconds: 0.08
-  JumpPressedRememberTimer: 0.08
+  coyote_seconds: 0.1
+  JumpBuffer_Seconds: 0.1
   howManyJumps: 1
   totalJumps: 0
   isGrounded: 0
@@ -529,6 +529,8 @@ MonoBehaviour:
   jumpSFXVolume: 0.15
   jumpSFX: {fileID: 8300000, guid: cf47924a9d4cc75488c26f757ec7af8e, type: 3}
   elevatorSFX: {fileID: 8300000, guid: e81be60292ef39642b9459002c37f11e, type: 3}
+  jumpPadSFXVolume: 0.5
+  jumpPadSFX: {fileID: 8300000, guid: fb1bdbd719b72c74cb24884f5289aa85, type: 3}
 --- !u!82 &393033605804597645
 AudioSource:
   m_ObjectHideFlags: 0

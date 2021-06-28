@@ -15,17 +15,16 @@ public class PlayerMovement : MonoBehaviour
     [Header ("Movement Stuff")]
     public float movementSpeed = 8.0f;
     private float movementInputDirection;
-    private float movementInputDirectionVert;
     float velocityXSmooth;
     public float smoothTime;
     private bool isFacingRight = true;
     [Header("Jumping")]
     public float jumpForce = 10.0f;
     public float gravidade = 4.5f;
-    private float coyote_timer = 0;
+    private float coyote_timer;
     [SerializeField] private float coyote_seconds = 0.1f;
-    private float JumpPressedRemember = 0;
-    [SerializeField] private float JumpPressedRememberTimer = 0.1f;
+    private float JumpBuffer_Timer;
+    [SerializeField] private float JumpBuffer_Seconds = 0.1f;
     [Header("Extra Jumps")]
     public int howManyJumps;
     public int totalJumps = 0;
@@ -54,6 +53,9 @@ public class PlayerMovement : MonoBehaviour
     public float jumpSFXVolume;
     public AudioClip jumpSFX;
     public AudioClip elevatorSFX;
+    [Range(0, 1)]
+    public float jumpPadSFXVolume;
+    public AudioClip jumpPadSFX;
 
     #endregion
 
@@ -80,8 +82,7 @@ public class PlayerMovement : MonoBehaviour
         CheckInput();
         CheckMovementDirection();
         CheckAnimation();
-        CheckNextLevel();
-        coyote_timer += Time.deltaTime;
+        CheckNextLevel();        
         rb.gravityScale = gravidade;
         popUp.transform.rotation = Quaternion.identity;
     }
@@ -92,6 +93,8 @@ public class PlayerMovement : MonoBehaviour
         if (other.CompareTag("Jump"))
         {
             float padForce = other.GetComponent<Jumppad>().Force;
+            aS.volume = jumpPadSFXVolume;
+            aS.PlayOneShot(jumpPadSFX);
             rb.velocity = new Vector2(rb.velocity.x, padForce);
         }
 
@@ -132,69 +135,68 @@ public class PlayerMovement : MonoBehaviour
 
 
     #region BasicMovementMethods
-    //Detetar Input de movimento -1 para esquerda, 1 para direita // -1 baixo e 1 cima
+    //Detetar Input de movimento -1 para esquerda, 1 para direita
     private void CheckInput()
     {
         movementInputDirection = Input.GetAxisRaw("Horizontal");
-        movementInputDirectionVert = Input.GetAxisRaw("Vertical");
     }
     private void CheckGround()
     {
-        isGrounded = Physics2D.BoxCast(groundCheck.position, new Vector2(xValue, yValue), 0, Vector2.down, groundCheckRadius, whatIsGround);
+        //isGrounded = Physics2D.BoxCast(groundCheck.position, new Vector2(xValue, yValue), 0, Vector2.down, groundCheckRadius, whatIsGround);
+        isGrounded = Physics2D.OverlapBox(groundCheck.position, new Vector2(xValue, yValue),0,whatIsGround);
     }
     private void CheckJump()
     {
         //Reset Jumps
-        if (isGrounded && totalJumps > 0)
+        if (isGrounded && totalJumps > 0 && (coyote_timer > coyote_seconds))
         {
             totalJumps = 0;
         }
+        else if (!isGrounded && (coyote_timer > coyote_seconds) && totalJumps == 0)
+        {
+            totalJumps = 1;
+        }
+
 
         if (canJump)
         {
             //Coyote Timer
+            coyote_timer += Time.deltaTime;
             if (isGrounded)
             {
                 coyote_timer = 0;
             }
-            else if (!isGrounded && (coyote_timer > coyote_seconds) && totalJumps == 0)
-            {
-                totalJumps = 1;
-            }
+            
 
             //JumpBuffer
-            JumpPressedRemember -= Time.deltaTime;
-            if (Input.GetKeyDown(KeyCode.Space) || movementInputDirectionVert == 1)
+            JumpBuffer_Timer -= Time.deltaTime;
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) && !isGrounded)
             {
-                JumpPressedRemember = JumpPressedRememberTimer;
+                JumpBuffer_Timer = JumpBuffer_Seconds;
             }
+
+
             //The Jumping
-            if (((JumpPressedRemember > 0) && isGrounded && totalJumps < howManyJumps) /*Jump Buffer*/)
+            if (((JumpBuffer_Timer > 0) && isGrounded && totalJumps < howManyJumps)) //Jumps automatically
             {
-                JumpPressedRemember = 0;
                 Jump();
             }
-            else if (((Input.GetKeyDown(KeyCode.Space) || movementInputDirectionVert == 1) && coyote_timer <= coyote_seconds && totalJumps < howManyJumps) /*CoyoteTimer*/)
+
+            //--------------
+            if (((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && coyote_timer <= coyote_seconds && totalJumps < howManyJumps))
             {
-                JumpPressedRemember = 0;
                 Jump();
-            }
-            else if ((Input.GetKeyDown(KeyCode.Space) || movementInputDirectionVert == 1) && !isGrounded)
-            {
-                if (totalJumps < howManyJumps)
-                {
-                    Jump();
-                }
             }
         }
-        
+
     }
     private void Jump()
     {
+        totalJumps++;
+        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        JumpBuffer_Timer = 0;
         aS.volume = jumpSFXVolume;
         aS.PlayOneShot(jumpSFX);
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);   
-        totalJumps++;
     }
     private void ApplyMovement()
     {
@@ -291,7 +293,8 @@ public class PlayerMovement : MonoBehaviour
         {
             Gizmos.color = new Color(1, 0, 0, 0.5f);
         }
-        Gizmos.DrawCube(groundCheck.position, new Vector2(xValue, yValue));
+        //Gizmos.DrawCube(groundCheck.position, new Vector2(xValue, yValue));
+        Gizmos.DrawWireCube(groundCheck.position, new Vector2(xValue, yValue));
     }
 
     #endregion
