@@ -6,6 +6,7 @@ public class TriggerBoxController : MonoBehaviour
 {
     public GameObject collToActivate;
 
+
     private void Awake()
     {
         collToActivate.SetActive(false);

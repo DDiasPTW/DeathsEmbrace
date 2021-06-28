@@ -22,12 +22,21 @@ public class OrbMovement : MonoBehaviour
     private Vector2 mousePos2D;
     private Vector2 clickPos = Vector2.zero;
 
+    private AudioSource aS;
+    [Range(0, 1)]
+    public float volumeInSFX;
+    public AudioClip InSFX;
+    [Range(0, 1)]
+    public float volumeOutSFX;
+    public AudioClip OutSFX;
+
     #region UnityMethods
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         cc = GetComponent<CircleCollider2D>();
         sr = GetComponent<SpriteRenderer>();
+        aS = GetComponent<AudioSource>();
         playerM = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         cc.isTrigger = true; //in case i forget to change in inspector
         position = new Vector2(transform.position.x,transform.position.y);
@@ -48,6 +57,8 @@ public class OrbMovement : MonoBehaviour
         if (other.CompareTag("TB") && isLaunched)
         {
             isCaught = true;
+            aS.volume = volumeInSFX;
+            aS.PlayOneShot(InSFX);
             caughtTarget = other.transform.position;
         }
     }
@@ -89,6 +100,8 @@ public class OrbMovement : MonoBehaviour
                 if (isCaught)
                 {
                     isCaught = false;
+                    aS.volume = volumeOutSFX;
+                    aS.PlayOneShot(OutSFX);
                 }
             }
         }       

@@ -13,6 +13,10 @@ public class Dialogue : MonoBehaviour
     public GameObject continueButton;
     public GameObject NoButton;
     public Text continueButtonText;
+    private AudioSource aS;
+    [Range(0, 1)]
+    public float volume;
+    public AudioClip dialogueSFX;
     [Header("Text")]
     public Text DialogueText;
     [TextArea (1,5)]
@@ -29,12 +33,14 @@ public class Dialogue : MonoBehaviour
         DialogueUI.SetActive(false);
         continueButton.SetActive(false);
         NoButton.SetActive(false);
+        aS = GetComponent<AudioSource>();
         pM = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         bCol = gameObject.GetComponent<BoxCollider2D>();
     }
 
     private void Update()
     {
+        aS.volume = volume;
         if (canShow && Input.GetKeyDown(KeyCode.E))
         {
             bCol.enabled = false;
@@ -64,6 +70,7 @@ public class Dialogue : MonoBehaviour
         foreach (char letter in frases[index].ToCharArray())
         {
             DialogueText.text += letter;
+            aS.PlayOneShot(dialogueSFX);
             yield return new WaitForSeconds(typingSpeed);
         }
     }

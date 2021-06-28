@@ -57,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpPadSFXVolume;
     public AudioClip jumpPadSFX;
 
+
     #endregion
 
     #region UnityMethods
@@ -236,7 +237,7 @@ public class PlayerMovement : MonoBehaviour
             sceneTransition.GetComponent<Animator>().Play("anim_SceneOut");
             sceneTransition.GetComponent<AudioSource>().PlayOneShot(elevatorSFX);
             StartCoroutine(LoadLevel());
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            canNextLevel = false;
         }
     }
 
@@ -258,6 +259,7 @@ public class PlayerMovement : MonoBehaviour
         else if(rb.velocity.x != 0 && isGrounded) //Is walking
         {
             anim.Play(RunAnim);
+            
         }else if (rb.velocity.x == 0 && !isGrounded && rb.velocity.y > 0) //Is jumping with no x movement
         {
             anim.Play(Jump0Up);   
