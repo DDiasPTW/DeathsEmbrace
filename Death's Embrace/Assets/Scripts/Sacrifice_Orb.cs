@@ -41,6 +41,7 @@ public class Sacrifice_Orb : MonoBehaviour
             Time.timeScale = 0;
             isCaught = true;
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            gameObject.GetComponent<CircleCollider2D>().enabled = false;
             StartCoroutine(DisableOrb());
             
         }

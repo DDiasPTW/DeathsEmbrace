@@ -303,7 +303,7 @@ MonoBehaviour:
   - ...
   - ...
   index: 0
-  typingSpeed: 0.01
+  typingSpeed: 0.05
 --- !u!1 &230952634
 GameObject:
   m_ObjectHideFlags: 0

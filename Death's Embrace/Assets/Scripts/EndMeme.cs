@@ -9,4 +9,10 @@ public class EndMeme : MonoBehaviour
     {
         SceneManager.LoadScene("Lvl_MainMenu");
     }
+
+    private void Awake()
+    {
+        GameObject music = GameObject.FindGameObjectWithTag("Music");
+        Destroy(music);
+    }
 }
