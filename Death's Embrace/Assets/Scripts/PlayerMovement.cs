@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     float velocityXSmooth;
     public float smoothTime;
     private bool isFacingRight = true;
+    public bool isDead = false;
     [Header("Jumping")]
     public float jumpForce = 10.0f;
     public float gravidade = 4.5f;
@@ -36,13 +37,14 @@ public class PlayerMovement : MonoBehaviour
     public float xValue;
     public float yValue;
     [Header("Animation")]
-    private Animator anim;
+    public Animator anim;
     private const string IdleAnim = "anim_Idle";
     private const string RunAnim = "anim_Run";
     private const string Jump0Up = "anim_Jump0Up";
     private const string Jump0Down = "anim_Jump0Down";
     private const string Jump1Up = "anim_Jump1Up";
     private const string Jump1Down = "anim_Jump1Down";
+    private const string Dead = "anim_Dead";
     [Header("PopUp_Anim")]
     public Animator pop_Anim;
     private const string In = "Pop_In";
@@ -56,6 +58,9 @@ public class PlayerMovement : MonoBehaviour
     [Range(0, 1)]
     public float jumpPadSFXVolume;
     public AudioClip jumpPadSFX;
+    [Range(0, 1)]
+    public float bodyThumpSFXVolume;
+    public AudioClip bodyThumpSFX;
 
 
     #endregion
@@ -112,6 +117,14 @@ public class PlayerMovement : MonoBehaviour
         }
         //Rececao
         if (other.CompareTag("Recept"))
+        {
+            popUp.transform.rotation = Quaternion.identity;
+            popUp.SetActive(true);
+            pop_Anim.Play(In);
+        }
+
+        //Death
+        if (other.CompareTag("Final"))
         {
             popUp.transform.rotation = Quaternion.identity;
             popUp.SetActive(true);
@@ -252,27 +265,37 @@ public class PlayerMovement : MonoBehaviour
 
     void CheckAnimation()
     {
-        if (rb.velocity.x == 0 && isGrounded) //Is stopped
+        if (!isDead)
         {
-            anim.Play(IdleAnim);
+            if (rb.velocity.x == 0 && isGrounded) //Is stopped
+            {
+                anim.Play(IdleAnim);
+            }
+            else if (rb.velocity.x != 0 && isGrounded) //Is walking
+            {
+                anim.Play(RunAnim);
+
+            }
+            else if (rb.velocity.x == 0 && !isGrounded && rb.velocity.y > 0) //Is jumping with no x movement
+            {
+                anim.Play(Jump0Up);
+            }
+            else if (rb.velocity.x == 0 && !isGrounded && rb.velocity.y < 0) //Is falling with no x movement
+            {
+                anim.Play(Jump0Down);
+            }
+            else if (rb.velocity.x != 0 && !isGrounded && rb.velocity.y > 0) //Is jumping with x movement
+            {
+                anim.Play(Jump1Up);
+            }
+            else if (rb.velocity.x != 0 && !isGrounded && rb.velocity.y < 0) //is falling with x movement
+            {
+                anim.Play(Jump1Down);
+            }
         }
-        else if(rb.velocity.x != 0 && isGrounded) //Is walking
+        if (isDead)
         {
-            anim.Play(RunAnim);
-            
-        }else if (rb.velocity.x == 0 && !isGrounded && rb.velocity.y > 0) //Is jumping with no x movement
-        {
-            anim.Play(Jump0Up);   
-        }else if (rb.velocity.x == 0 && !isGrounded && rb.velocity.y < 0) //Is falling with no x movement
-        {
-            anim.Play(Jump0Down);
-        }else if (rb.velocity.x != 0 && !isGrounded && rb.velocity.y > 0) //Is jumping with x movement
-        {
-            anim.Play(Jump1Up);
-        }
-        else if (rb.velocity.x != 0 && !isGrounded && rb.velocity.y < 0) //is falling with x movement
-        {
-            anim.Play(Jump1Down);
+            anim.Play(Dead);
         }
     }
 

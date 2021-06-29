@@ -17,6 +17,9 @@ TagManager:
   - Room
   - Recept
   - Scene
+  - Death
+  - Final
+  - Cut
   layers:
   - Default
   - TransparentFX

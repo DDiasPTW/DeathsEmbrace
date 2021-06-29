@@ -7,6 +7,11 @@ public class GameManager : MonoBehaviour
 {
     public int whatLevelUnlocked;
 
+    private void Awake()
+    {
+        Time.timeScale = 1;
+    }
+
     private void Start()
     {       
         whatLevelUnlocked = PlayerPrefs.GetInt("LevelUnlocked");
