@@ -36,7 +36,7 @@ public class TutorialZone : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Tut_UI.SetActive(false);
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
         }
     }
 }

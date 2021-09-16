@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &252850226
 Transform:
   m_ObjectHideFlags: 0
@@ -157,7 +157,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3509728327686382669}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02, y: -0.47, z: 0}
+  m_LocalPosition: {x: -0.02, y: -0.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3509728328055904637}
@@ -498,15 +498,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10b0222a31f57124a9e3e11b2d7056c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  position: {x: 0, y: 0}
   speed: 0.02
   launchSpeed: 0.3
   caughtSpeed: 1
   isLaunched: 0
   isCaught: 0
+  isDead: 0
+  Death: {fileID: 0}
   volumeInSFX: 0.2
   InSFX: {fileID: 8300000, guid: 6f0994b2d19301548b8e5fdca48d9914, type: 3}
   volumeOutSFX: 0.2
   OutSFX: {fileID: 8300000, guid: 74b241549dfa15342a8003a02b6f9a85, type: 3}
+  volumeExplodeSFX: 0
+  ExplodeSFX: {fileID: 0}
+  particles: {fileID: 0}
 --- !u!58 &3824763591940973538
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -725,6 +731,7 @@ MonoBehaviour:
   sceneTransition: {fileID: 0}
   movementSpeed: 5
   smoothTime: 0
+  isDead: 0
   jumpForce: 15
   gravidade: 4.5
   coyote_seconds: 0.1
@@ -738,12 +745,15 @@ MonoBehaviour:
     m_Bits: 64
   xValue: 0.249
   yValue: 0.05
+  anim: {fileID: 0}
   pop_Anim: {fileID: 1395818545}
   jumpSFXVolume: 0.1
   jumpSFX: {fileID: 8300000, guid: cf47924a9d4cc75488c26f757ec7af8e, type: 3}
   elevatorSFX: {fileID: 8300000, guid: e81be60292ef39642b9459002c37f11e, type: 3}
   jumpPadSFXVolume: 0.15
   jumpPadSFX: {fileID: 8300000, guid: fb1bdbd719b72c74cb24884f5289aa85, type: 3}
+  bodyThumpSFXVolume: 0
+  bodyThumpSFX: {fileID: 0}
 --- !u!82 &393033605804597645
 AudioSource:
   m_ObjectHideFlags: 0
