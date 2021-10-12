@@ -900,6 +900,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 320063374815482379, guid: 951bffba95b73904faa18c6a5b8183c6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7424556963017563156, guid: 951bffba95b73904faa18c6a5b8183c6, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -1745,14 +1749,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3509728328055904636, guid: 317809635315dbe469bbebe551104c8f, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3509728328055904636, guid: 317809635315dbe469bbebe551104c8f, type: 3}
-      propertyPath: jumpSFXVolume
-      value: 0.15
-      objectReference: {fileID: 0}
     - target: {fileID: 3509728328937192200, guid: 317809635315dbe469bbebe551104c8f, type: 3}
       propertyPath: m_RootOrder
       value: 3

@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Jumping")]
     public float jumpForce = 10.0f;
     public float gravidade = 4.5f;
-    private float coyote_timer;
+    [SerializeField] private float coyote_timer;
     [SerializeField] private float coyote_seconds = 0.1f;
     private float JumpBuffer_Timer;
     [SerializeField] private float JumpBuffer_Seconds = 0.1f;
@@ -172,10 +172,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
+        coyote_timer += Time.deltaTime;
         if (canJump)
         {
             //Coyote Timer
-            coyote_timer += Time.deltaTime;
             if (isGrounded)
             {
                 coyote_timer = 0;
@@ -267,11 +267,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!isDead)
         {
-            if (rb.velocity.x == 0 && isGrounded) //Is stopped
+            if (/*rb.velocity.x == 0 &&*/ isGrounded && movementInputDirection == 0) //Is stopped
             {
                 anim.Play(IdleAnim);
             }
-            else if (rb.velocity.x != 0 && isGrounded) //Is walking
+            else if (rb.velocity.x != 0 && isGrounded && movementInputDirection != 0) //Is walking
             {
                 anim.Play(RunAnim);
 

@@ -157,7 +157,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3509728327686382669}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02, y: -0.45, z: 0}
+  m_LocalPosition: {x: -0.02, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3509728328055904637}
@@ -747,7 +747,7 @@ MonoBehaviour:
   yValue: 0.05
   anim: {fileID: 0}
   pop_Anim: {fileID: 1395818545}
-  jumpSFXVolume: 0.1
+  jumpSFXVolume: 0.15
   jumpSFX: {fileID: 8300000, guid: cf47924a9d4cc75488c26f757ec7af8e, type: 3}
   elevatorSFX: {fileID: 8300000, guid: e81be60292ef39642b9459002c37f11e, type: 3}
   jumpPadSFXVolume: 0.15
